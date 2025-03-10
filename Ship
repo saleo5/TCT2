@@ -1,0 +1,7 @@
+public class Ship extends Machine{
+
+    public Ship(String name, int latitude, int longitude) {
+        super(name, latitude, longitude);
+
+    }
+}

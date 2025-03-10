@@ -1,0 +1,5 @@
+public class ShipN extends Nodriza{
+    public ShipN(String name, int latitude, int longitude) {
+        super(name, latitude, longitude);
+    }
+}

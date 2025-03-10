@@ -1,0 +1,28 @@
+public abstract class Machine
+{
+    private Position location;
+    private String name;
+
+    /**
+     * Constructor for objects of class Machine
+     */
+    public Machine(String name, int latitude, int longitude)
+    {
+        this.name = name;
+        this.location = new Position(latitude, longitude);
+    }
+
+
+    public void moveNorth(){
+        location.moveNorth();
+    }
+
+    public int getLatitude(){
+        return location.getLat();
+    }
+
+    public int getLongitude(){
+        return location.getLon();
+    }
+
+}
