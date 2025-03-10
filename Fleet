@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+
+public class Fleet
+{
+    private String name;
+    private ArrayList<Machine> machines;
+    private ArrayList<Sailor> sailors;
+    private Board board;
+
+    /**
+     * Constructor for objects of class Fleet
+     */
+    public Fleet(Board board, Machine machines, Sailor sailors, String name)
+    {
+        this.board = board;
+        this.machines = new ArrayList<Machine>();
+        this.sailors = new ArrayList<Sailor>();
+        this.name = name;
+    }
+
+    public void addMachine(Machine machine) {
+        machines.add(machine);
+    }
+        public void moveNorth()
+    {
+        for(Machine machine : machines){
+            machine.moveNorth();
+        }
+    }
+
+    public ArrayList<Machine> willBeDestroyed(int longitude, int latitude) {
+        ArrayList<Machine> destroyedMachines = new ArrayList<>();
+
+        for (Machine machine : machines) {
+            int lat = machine.getLatitude();
+            int lon = machine.getLongitude();
+
+            if (machine instanceof Airplane) {
+                Airplane airplane = (Airplane) machine;
+                boolean onAir = airplane.getOnAir();
+
+                if (!onAir) {
+                    if (longitude == lon && latitude == lat) {
+                        destroyedMachines.add(machine);
+                    }
+                }
+
+            } else if ( machine instanceof Nodriza){
+                Capsule capsule = (Capsule) machine;
+                int profundidad = capsule.getProfundidad();
+                if(longitude == lon && latitude == lat && profundidad < 8000 ){
+                    destroyedMachines.add(machine);
+                }
+            }
+            else {
+                if (longitude == lon && latitude == lat) {
+                    destroyedMachines.add(machine);
+                }
+            }
+        }
+
+        if (destroyedMachines.isEmpty()) {
+            System.out.println("No machines destroyed at (" + latitude + ", " + longitude + ").");
+        } else {
+            System.out.println("Machines destroyed at (" + latitude + ", " + longitude + "):");
+            for (Machine destroyed : destroyedMachines) {
+                System.out.println(destroyed);
+            }
+        }
+
+        return destroyedMachines;
+    }
+
+
+}
