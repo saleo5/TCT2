@@ -1,0 +1,11 @@
+public class Capsule extends Nodriza {
+    private int profundidad;
+    public Capsule(String name, int latitude, int longitude) {
+        super(name, latitude, longitude);
+        this.profundidad = profundidad;
+    }
+
+    public int getProfundidad() {
+        return profundidad;
+    }
+}
